@@ -12,7 +12,7 @@ html {
 body {
     width: 70%;
     margin: 20px auto;
-    background-image: url(./img/mario.jpg);
+    background-image: url(../img/mario.jpg);
     background-size: cover;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 18px;
@@ -278,6 +278,8 @@ nav {
 .books {
     margin-bottom: 10px;
     width: 100%;
+    height: 30px;
+    border-radius: 15px;
     border: 3px solid rgb(135, 235, 173);
     transition: all 0.5s ease;
 }
@@ -303,7 +305,20 @@ nav {
     margin-top: 50px;
 }
 
+#communicate{
+    text-align: center;
+    color: black;
+}
+a{
+    color: black;
+    text-decoration: none;
+}
 #communicate img{
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
+}
+#communicate div.come{
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
 }
