@@ -14,12 +14,13 @@ body{
     margin: 0 auto;
     background-image: url(./img/mario.jpg);
     background-size: cover;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px; 
+
 }
 header{
     width: 100%;
     color: black;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 18px; 
     display:flex;/*Flex布局*/
     display: -webkit-flex; 
     align-items:center;
@@ -44,3 +45,14 @@ header #photo img{
     margin-left: 20px;
 }
 
+nav{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+.nav{
+    width: 150px;
+    height: 30px;
+    background: skyblue;
+    border-radius: 10px 10px 0 0;    
+}
