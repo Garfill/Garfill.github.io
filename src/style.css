@@ -14,3 +14,16 @@ body{
     background-size: cover;
 }
 
+header #photo{
+    width: 120px;
+    height: 160px;
+    border: skyblue 4px solid;
+    border-radius: 50%;
+    overflow: hidden;
+
+}
+
+header #photo img{
+    width: 120px;
+    height: 160px;
+}
