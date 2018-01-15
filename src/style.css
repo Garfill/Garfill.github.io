@@ -48,11 +48,14 @@ header #photo img{
 nav{
     display: flex;
     justify-content: space-around;
+    margin: 15px;
+    position: relative;
     text-align: center;
 }
 .nav{
     width: 150px;
     height: 30px;
     background: skyblue;
-    border-radius: 10px 10px 0 0;    
+    border-radius: 10px 10px 0 0;
+    line-height: 30px;      
 }
