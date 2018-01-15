@@ -4,26 +4,43 @@
     box-sizing: border-box;
 }
 
-html,body{
+html{
     width: 100%;
     height: 100%;    
 }
 
 body{
+    width: 70%;
+    margin: 0 auto;
     background-image: url(./img/mario.jpg);
     background-size: cover;
 }
-
+header{
+    width: 100%;
+    color: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px; 
+    display:flex;/*Flex布局*/
+    display: -webkit-flex; 
+    align-items:center;
+}
 header #photo{
-    width: 120px;
-    height: 160px;
+    width: 100px;
+    height: 100px;
     border: skyblue 4px solid;
     border-radius: 50%;
     overflow: hidden;
-
+    float: left;
 }
-
 header #photo img{
-    width: 120px;
-    height: 160px;
+    margin-top: -10px;
+    width: 100px;
+    height: 140px;
 }
+#photo,#intro{
+    display: inline-block;
+}
+#intro{
+    margin-left: 20px;
+}
+
