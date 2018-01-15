@@ -11,7 +11,7 @@ html{
 
 body{
     width: 70%;
-    margin: 0 auto;
+    margin: 20px auto;
     background-image: url(./img/mario.jpg);
     background-size: cover;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -47,7 +47,7 @@ header #photo img{
 
 nav{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 15px;
     position: relative;
     text-align: center;
@@ -57,5 +57,25 @@ nav{
     height: 30px;
     background: skyblue;
     border-radius: 10px 10px 0 0;
-    line-height: 30px;      
+    line-height: 30px;
+    cursor: pointer;      
+}
+
+#main{
+    width: 100%;
+    margin: 30px;
+}
+
+#exp{
+    color: gray;
+}
+
+#edu,#work{
+    width: 50%;
+    float: left;
+    border-left: 5px grey solid;
+    padding: 10px;
+}
+.exp{
+    margin-top: 20px;
 }
