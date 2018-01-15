@@ -76,11 +76,12 @@ nav {
 
 .page {
     width: 100%;
-    /* position: absolute; */
+    position: absolute;
 }
-.active{
-    display: block;
+#p2,#p3,#p4{
+    display: none;
 }
+
 
 #exp {
     color: gray;
@@ -165,7 +166,7 @@ nav {
 }
 
 #bar2 {
-    width: 62%;
+    width: 58%;
     background: rgb(151, 159, 194);
     animation: load2 1s ease-in;
 }
@@ -175,7 +176,7 @@ nav {
         width: 0%;
     }
     100% {
-        width: 62%;
+        width: 58%;
     }
 }
 
