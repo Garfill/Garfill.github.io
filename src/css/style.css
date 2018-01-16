@@ -66,6 +66,11 @@ nav {
     border-radius: 10px 10px 0 0;
     line-height: 30px;
     cursor: pointer;
+    transition: all 0.3s ease;
+}
+.nav:hover{
+    border-radius: 20px 20px 0 0;
+    background: rgb(179, 177, 177);
 }
 
 #main {
@@ -315,8 +320,8 @@ a{
     text-decoration: none;
 }
 #communicate img{
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
 }
 #communicate div.come{
     height: 30px;
