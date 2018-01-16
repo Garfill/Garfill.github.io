@@ -89,6 +89,15 @@ nav {
 
 #exp {
     color: gray;
+    animation: fade 1.5s ease;
+}
+@keyframes fade{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
 }
 
 #edu,
@@ -163,9 +172,11 @@ nav {
 @keyframes load1 {
     0% {
         width: 0%;
+        opacity: 0;
     }
     100% {
         width: 70%;
+        opacity: 1;
     }
 }
 
@@ -178,9 +189,11 @@ nav {
 @keyframes load2 {
     0% {
         width: 0%;
+        opacity: 0;
     }
     100% {
         width: 58%;
+        opacity: 1;
     }
 }
 
@@ -189,13 +202,14 @@ nav {
     background: rgb(231, 141, 228);
     animation: load3 1s ease-in;
 }
-
 @keyframes load3 {
     0% {
         width: 0%;
+        opacity: 0;
     }
     100% {
         width: 55%;
+        opacity: 1;
     }
 }
 
@@ -208,9 +222,11 @@ nav {
 @keyframes load4 {
     0% {
         width: 0%;
+        opacity: 0;
     }
     100% {
         width: 65%;
+        opacity: 1;
     }
 }
 
@@ -223,9 +239,11 @@ nav {
 @keyframes load5 {
     0% {
         width: 0%;
+        opacity: 0;
     }
     100% {
         width: 42%;
+        opacity: 1;
     }
 }
 
@@ -238,9 +256,11 @@ nav {
 @keyframes load6 {
     0% {
         width: 0%;
+        opacity: 0;
     }
     100% {
         width: 55%;
+        opacity: 1;
     }
 }
 
@@ -253,9 +273,11 @@ nav {
 @keyframes load7 {
     0% {
         width: 0%;
+        opacity: 0;
     }
     100% {
         width: 50%;
+        opacity: 1;
     }
 }
 
@@ -268,9 +290,11 @@ nav {
 @keyframes load8 {
     0% {
         width: 0%;
+        opacity: 0;
     }
     100% {
         width: 62%;
+        opacity: 1;
     }
 }
 
@@ -282,11 +306,12 @@ nav {
 
 .books {
     margin-bottom: 10px;
-    width: 100%;
+    width: 80%;
     height: 30px;
     border-radius: 15px;
     border: 3px solid rgb(135, 235, 173);
     transition: all 0.5s ease;
+    margin: 0 auto;
 }
 .books:hover{
     background: skyblue;
@@ -306,9 +331,39 @@ nav {
     text-align: center;
 }
 
-#mine,#comment{
-    margin-top: 50px;
+#mine,#comment,#tools{
+    margin-top: 30px;
+    width: 33%;
+    border-left: grey 1px solid;
+    float: left;
 }
+#tools{
+    border-right: grey 1px solid;
+}
+#mine,#comment,#tools{
+    animation: from_left 0.7s ease-in;
+}
+@keyframes from_left{
+    0%{
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}
+@keyframes from_right{
+    0%{
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}
+
 
 #communicate{
     text-align: center;
@@ -326,4 +381,13 @@ a{
     height: 30px;
     line-height: 30px;
     display: inline-block;
+}
+
+.come_left{
+    animation: from_left 0.3s ease-in;
+    overflow: hidden;
+}
+.come_right{
+    animation: from_right 0.3s ease-in;
+    overflow: hidden;
 }
