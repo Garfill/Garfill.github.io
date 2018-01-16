@@ -21,7 +21,6 @@ function bt_off() {
 function bt_on(num2){
     let navs = document.getElementsByClassName('nav');
     navs[num2].style.backgroundColor = "rgb(179, 177, 177)";
-    navs[num2].style.borderRadius = "20px 20px 0 0";
 }
 function go_p1() {
     vanish();
