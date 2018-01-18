@@ -69,7 +69,7 @@ nav {
     transition: all 0.3s ease;
 }
 .nav:hover{
-    border-radius: 20px 20px 0 0;
+    border-radius: 30px 30px 0 0;
 }
 
 #main {
@@ -337,12 +337,19 @@ nav {
     border-left: grey 1px solid;
     float: left;
 }
-#tools{
-    border-right: grey 1px solid;
-}
+
 #mine,#tools{
-    animation: from_left 0.7s ease-in;
+    animation: from_bottom 0.5s ease-in;
 }
+@keyframes from_bottom{
+    0%{
+        transform: translateY(100%);
+    }
+    100%{
+        transform: translateY(0%);
+    }
+}
+
 @keyframes from_left{
     0%{
         transform: translateX(-100%);
