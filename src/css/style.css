@@ -331,7 +331,7 @@ nav {
     text-align: center;
 }
 
-#mine,#comment,#tools{
+#mine,#tools{
     margin-top: 30px;
     width: 33%;
     border-left: grey 1px solid;
@@ -340,7 +340,7 @@ nav {
 #tools{
     border-right: grey 1px solid;
 }
-#mine,#comment,#tools{
+#mine,#tools{
     animation: from_left 0.7s ease-in;
 }
 @keyframes from_left{
