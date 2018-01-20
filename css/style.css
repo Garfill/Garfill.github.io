@@ -12,7 +12,7 @@ html {
 body {
     width: 70%;
     margin: 20px auto;
-    background-image: url(../img/mario.jpg);
+    background-image: url("../src/img/mario.jpg");
     background-size: cover;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 18px;
