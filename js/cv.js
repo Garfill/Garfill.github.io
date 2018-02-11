@@ -1,40 +1,29 @@
-function vanish() {
-    let pages = document.getElementsByClassName('page');
-    let len = pages.length;
-    let i;
-    for (i = 0; i < len; i++) {
+function go_page(navs,pages,len,index) {
+    //Vanish pages
+    for (var i = 0; i < len; i += 1) {
         pages[i].style.display = "none";
     }
+    //show page
+    pages[index].style.display = "block";
+    //vanish buttons
+    for (let i = 0; i < len; i += 1) {
+        navs[i].style.backgroundColor = "skyblue";
+    }
+    //show button
+    navs[index].style.backgroundColor = "snow";
 }
-function show(num1) {
-    let pages = document.getElementsByClassName('page');
-    pages[num1].style.display = "block";
-}
-function bt_off() {
-    let navs = document.getElementsByClassName('nav');
-    let len = navs.length;
-    let i;
-    for (i = 0; i < len; i++) {
-        navs[i].style.backgroundColor = 'skyblue';
+function start(navs,pages,len) {
+    for (let i = 0; i < len; i += 1) {
+        navs[i].onclick = function () {
+            console.log(i);
+            go_page(navs,pages,len,i);
+        };
     }
 }
-function bt_on(num2){
-    let navs = document.getElementsByClassName('nav');
-    navs[num2].style.backgroundColor = "snow";
-}
-function go_page(index) {
-    vanish();
-    show(index);
-    bt_off();
-    bt_on(index);
-}
-
-for(let i=0;i<5;i++){
+window.onload = function () {
     var navs = document.getElementsByClassName("nav");
-    navs[i].onclick = function(){
-        go_page(i);
-    };
-}
-
-
+    var pages = document.getElementsByClassName("page");
+    var len = pages.length;
+    start(navs,pages,len);
+};
 

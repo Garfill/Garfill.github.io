@@ -171,7 +171,7 @@ nav {
 
 @keyframes load1 {
     0% {
-        width: 0%;
+        width: 0;
         opacity: 0;
     }
     100% {
@@ -188,7 +188,7 @@ nav {
 
 @keyframes load2 {
     0% {
-        width: 0%;
+        width: 0;
         opacity: 0;
     }
     100% {
@@ -204,7 +204,7 @@ nav {
 }
 @keyframes load3 {
     0% {
-        width: 0%;
+        width: 0;
         opacity: 0;
     }
     100% {
@@ -221,7 +221,7 @@ nav {
 
 @keyframes load4 {
     0% {
-        width: 0%;
+        width: 0;
         opacity: 0;
     }
     100% {
@@ -238,7 +238,7 @@ nav {
 
 @keyframes load5 {
     0% {
-        width: 0%;
+        width: 0;
         opacity: 0;
     }
     100% {
@@ -255,7 +255,7 @@ nav {
 
 @keyframes load6 {
     0% {
-        width: 0%;
+        width: 0;
         opacity: 0;
     }
     100% {
@@ -272,7 +272,7 @@ nav {
 
 @keyframes load7 {
     0% {
-        width: 0%;
+        width: 0;
         opacity: 0;
     }
     100% {
@@ -289,7 +289,7 @@ nav {
 
 @keyframes load8 {
     0% {
-        width: 0%;
+        width: 0;
         opacity: 0;
     }
     100% {
@@ -305,13 +305,13 @@ nav {
 }
 
 .books {
-    margin-bottom: 10px;
     width: 80%;
     height: 30px;
     border-radius: 15px;
     border: 3px solid rgb(135, 235, 173);
     transition: all 0.5s ease;
     margin: 0 auto;
+    cursor: pointer;
 }
 .books:hover{
     background: skyblue;
