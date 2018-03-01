@@ -30,7 +30,7 @@ window.onload = function () {
     start(navs, pages, len);
 
     var index = 0;
-    var str = "Talk is cheap, show the code";
+    var str = "Talk is cheap, show me your code.";
     var con = document.getElementById("word");
     var typer = null;
 
@@ -40,7 +40,7 @@ window.onload = function () {
         if (index == str.length) {
             clearTimeout(typer);
         } else {
-            typer = setTimeout(type,100)
+            typer = setTimeout(type,70)
         }
     }
     type()
