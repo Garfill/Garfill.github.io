@@ -29,12 +29,13 @@ img {
   display: inline-block;
   width: 3rem;
   max-width: 70px;
-  max-height: 70px;
   margin: .5rem;
   cursor: pointer;
 }
 
 .item-img {
+  height: 3rem;
+  max-height: 70px;
   transition: transform linear .1s;
 }
 
@@ -49,7 +50,7 @@ img {
 }
 
 .item-desc {
-  font-size: .2rem;
+  font-size: .3rem;
   text-align: center;
 }
 
@@ -118,6 +119,7 @@ img {
   margin-top: .5rem;
   font-size: .4rem;
   text-align: left;
+  color: #444;
 }
 
 .user-exper-block {
