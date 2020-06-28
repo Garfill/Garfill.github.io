@@ -1,0 +1,164 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  background: rgba(0, 0, 0, .1);
+}
+
+img {
+  max-width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.wrapper {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  text-align: center;
+}
+
+.item {
+  display: inline-block;
+  width: 3rem;
+  max-width: 70px;
+  max-height: 70px;
+  margin: .5rem;
+  cursor: pointer;
+}
+
+.item-img {
+  transition: transform linear .1s;
+}
+
+.hover-span {
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: black;
+  opacity: .5;
+  transition: all linear .2s;
+}
+
+.item-desc {
+  font-size: .2rem;
+  text-align: center;
+}
+
+.item-img.mouse-down-img {
+  transform: scale(.8);
+}
+
+.item-img.mouse-up-img {
+  transform: scale(1.1);
+}
+
+/* 弹窗部分 */
+.pop-block {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: none;
+}
+
+.pop-mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .5);
+}
+
+.pop-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem;
+  border-radius: .2rem;
+  background: rgb(238, 229, 229);
+  font-size: .5rem;
+}
+
+.contact-info p {
+  margin-top: .3rem;
+}
+
+/* exper pop */
+.experience-box {
+  width: 70%;
+  max-width: 600px;
+}
+
+.user-info-block {
+  position: relative;
+  padding-left: 5rem;
+}
+
+.user-info-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4rem;
+  height: 4.3rem;
+  overflow: hidden;
+}
+
+.user-info-item {
+  margin-top: .5rem;
+  font-size: .4rem;
+  text-align: left;
+}
+
+.user-exper-block {
+  margin-top: .5rem;
+}
+.user-exper-title {
+  font-size: .5rem;
+}
+.user-exper-desc {
+  font-size: .35rem;
+  color: #444;
+}
+.user-exper-desc li {
+  margin-top: .25rem;
+}
+
+
+/* 弹窗动画 */
+.pop-animate-active {
+  transition: all linear .2s;
+}
+
+.pop-animate-active .pop-box {
+  transition: opacity linear .2s;
+  transform-origin: center;
+}
+
+.pop-animate-enter .pop-box,
+.pop-animate-leave .pop-box {
+  opacity: .3;
+}
+
+
+
+/* 媒体查询 */
+@media screen and (max-width: 600px) {
+  .pop-box {
+    font-size: 15px;
+  }
+
+  .box-info-item {
+    display: block;
+  }
+}
