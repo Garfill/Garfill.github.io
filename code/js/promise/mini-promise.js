@@ -9,8 +9,11 @@ const PENDING = 'pending', FULFILLED = 'fulfilled', REJECTED = 'rejected';
  * Promise 构造函数
  * @param {Function} executor 
  */
+
+let uid = 0
 function Promise(executor) {
   let self = this;
+  self.uid = ++uid;
   self.status = PENDING;
   self.fulFilledCallback = [];
   self.rejectedCallback = [];
@@ -89,13 +92,13 @@ Promise.prototype.then = function(onFulFilled, onRejected) {
     }
     
     if (self.status === PENDING) {
-      self.fulFilledCallback.push(onFulFilled);
-      self.rejectedCallback.push(onRejected);
+      self.fulFilledCallback.push(() => handler(onFulFilled));
+      self.rejectedCallback.push(() => handler(onRejected));
     } else if (self.status === FULFILLED) {
       setTimeout(() => {
         handler(onFulFilled)
       }, 0);
-    } else (self.status === REJECTED) {
+    } else {
       setTimeout(() => {
         handler(onRejected)
       }, 0);
@@ -179,4 +182,8 @@ Promise.race = function(promises) {
       )
     })
   })
+}
+
+module.exports = {
+  Promise
 }
