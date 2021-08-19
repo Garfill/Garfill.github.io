@@ -22,7 +22,7 @@
 
   const urlList = [
     'https://github.com/Garfill',
-    'https://www.cnblogs.com/garfill/',
+    'https://garfill.github.io/blog/',
   ];
 
   function slideTo(index) {
