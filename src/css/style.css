@@ -103,16 +103,20 @@ img {
 
 .user-info-block {
   position: relative;
-  padding-left: 5rem;
+  padding-left: 3rem;
 }
 
 .user-info-img {
   position: absolute;
-  top: 0;
+  top: 50%;
   left: 0;
-  width: 4rem;
-  height: 4.3rem;
+  transform: translateY(-50%);
+  width: 2.5rem;
   overflow: hidden;
+}
+
+.user-info-detail {
+  font-size: 14px;
 }
 
 .user-info-item {
@@ -126,7 +130,7 @@ img {
   margin-top: .5rem;
 }
 .user-exper-title {
-  font-size: .5rem;
+  font-size: .4rem;
 }
 .user-exper-desc {
   font-size: .35rem;
