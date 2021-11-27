@@ -3,7 +3,6 @@
   var wrapper = document.querySelector('.wrapper');
   var iconList = document.querySelectorAll('.item');
   var contactBox = document.querySelector('.contact-block');
-  var experienceBox = document.querySelector('.experience-block');
   var popMask = document.querySelectorAll('.pop-mask');
 
   const maskReg = /^pop\-mask$/i
@@ -18,7 +17,6 @@
 
 
   var showContact = false;
-  var showExper = false;
 
   const urlList = [
     'https://github.com/Garfill',
@@ -52,7 +50,6 @@
 
   function closeAllBox(show) {
     showContact && toggleBox(contactBox, show);
-    showExper &&  toggleBox(experienceBox, show);
   }
 
   function handleClick(index) {
@@ -60,11 +57,7 @@
       return window.open(urlList[index])
     }
     // 联系方式弹窗
-    if (index == 3) {
-      return toggleBox(contactBox, true)
-    } else if (index == 2) {
-      return toggleBox(experienceBox, true)
-    }
+    return toggleBox(contactBox, true)
   }
 
   for (let i = 0; i < iconList.length; i++) {
@@ -84,11 +77,8 @@
       setTimeout(() => {
         img.classList.remove('mouse-up-img')
       }, 200);
-    }, false)
-
-    icon.addEventListener('click', () => {
       handleClick(i)
-    })
+    }, false)
   }
 
   contactBox.addEventListener('transitionend', (e) => {
@@ -99,16 +89,6 @@
     } else {
       contactBox.classList.remove('pop-animate-leave')
       contactBox.style.display = 'none'
-    }
-  })
-  experienceBox.addEventListener('transitionend', (e) => {
-    showExper = !showExper
-    experienceBox.classList.remove('pop-animate-active')
-    if (showExper) {
-      experienceBox.classList.remove('pop-animate-enter')
-    } else {
-      experienceBox.classList.remove('pop-animate-leave')
-      experienceBox.style.display = 'none'
     }
   })
 
