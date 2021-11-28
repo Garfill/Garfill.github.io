@@ -168,3 +168,15 @@ img {
     display: block;
   }
 }
+
+/* icp */
+.icp-block {
+  display: block;
+  position: fixed;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  font-size: 12px;
+  text-decoration: none;
+  color: #444;
+}
