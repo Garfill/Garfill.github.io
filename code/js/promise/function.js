@@ -184,6 +184,15 @@ Promise.race = function(promises) {
   })
 }
 
-module.exports = {
-  Promise
-}
+const p1 = new Promise((res, rej) => {
+  res(1)
+})
+
+const p3 = p1.then(val => {
+  return val + 1
+}).then(val => {
+  console.log(val)
+  return val + 1
+})
+
+console.log('p3', p3)
