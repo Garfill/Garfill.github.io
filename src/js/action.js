@@ -18,7 +18,7 @@
 
   var showContact = false;
 
-  const urlList = [
+  const urls = [
     'https://github.com/Garfill',
     'https://garfill.github.io/blog/',
   ];
@@ -53,9 +53,7 @@
   }
 
   function handleClick(index) {
-    if (urlList[index]) {
-      return window.open(urlList[index])
-    }
+    if (urls[index]) return
     // 联系方式弹窗
     return toggleBox(contactBox, true)
   }
