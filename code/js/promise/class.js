@@ -11,6 +11,17 @@ const PENDING = 'pending';
 const FULFILLED = 'fulfilled';
 const REJECTED = 'rejected';
 
+/**
+ * Promise 解决过程 [[Resolve]](promise2, x) 实现
+ * promise1 调用 then 回调返回值，之后 resolve promise2
+ * @param {promise} promise promise1调用 then 返回的promise2
+ * @param {*} x promise1 的then中 onfulfilled 或者 onrejected 的返回值
+ * @param {*} resolve promise2 !!! 中的 resolve
+ * @param {*} reject promise2 !!! 中的 reject
+ */
+function resolvePromise(promise, x, resolve, reject) {
+}
+
 class MyPromise {
   constructor(func) {
     this.PromiseState = PENDING // 状态
@@ -51,32 +62,82 @@ class MyPromise {
 
   then(onFulfilled, onRejected) {
     // 参数校验，如果某个参数为空应该默认是忽略
-    onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value
-    onRejected = typeof onRejected === 'function' ? onRejected : reason => { throw reason }
-    // 待定状态下调用 then
-    if (this.PromiseState === PENDING) {
-      this.onFulfilledCallbacks.push(() => {
-        // 回调函数应该在 then 被调用的那一轮事件循环 的下一个执行栈 中执行
+    // 实现异步链式调用 then 后，不需要校验
+    // onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value
+    // onRejected = typeof onRejected === 'function' ? onRejected : reason => { throw reason }
+
+    // 返回一个新的promise
+    // 当 上一个promsie的then 回调函数之后调用新的promise
+    const promise2 = new MyPromise((resolve, reject) => {
+      if (this.PromiseState === FULFILLED) {
+        // fulfilled
         queueMicrotask(() => {
-          onFulfilled(this.PromiseResult)
+          try {
+            if (typeof onFulfilled !== 'function') {
+              resolve(this.PromiseResult)
+            } else {
+              let x = onFulfilled(this.PromiseResult)
+              resolvePromise(promise2, x, resolve, reject)
+            }
+          } catch (e) {
+            // 前一个 promise1 的 回调函数  中执行错误，下一个promise2直接 reject
+            reject(e)
+          }
         })
-      })
-      this.onRejectedCallbacks.push(() => {
+      } else if (this.PromiseState === REJECTED) {
+        // rejected
         queueMicrotask(() => {
-          onRejected(this.PromiseResult)
+          try {
+            if (typeof onRejected !== 'function') {
+              reject(this.PromiseResult)
+            } else {
+              let x = onRejected(this.PromiseResult)
+              resolvePromise(promise2, x, resolve, reject)
+            }
+          } catch (e) {
+            reject(e)
+          }
         })
-      })
-    }
-    if (this.PromiseState === FULFILLED) {
-      queueMicrotask(() => {
-        onFulfilled(this.PromiseResult)
-      })
-    }
-    if (this.PromiseState === REJECTED) {
-      queueMicrotask(() => {
-        onRejected(this.PromiseResult)
-      })
-    }
+      } else if (this.PromiseState === PENDING) {
+        // 待定状态下调用 then
+        this.onFulfilledCallbacks.push(() => {
+          // 回调函数应该在 then 被调用的那一轮事件循环 的下一个执行栈 中执行，不是直接回调循环执行
+          queueMicrotask(() => {
+            try {
+              if (typeof onFulfilled !== 'function') {
+                resolve(this.PromiseResult)
+              } else {
+                let x = onFulfilled(this.PromiseResult)
+                resolvePromise(promise2, x, resolve, reject)
+              }
+            } catch (e) {
+              // 前一个 promise1 的 回调函数  中执行错误，下一个promise2直接 reject
+              reject(e)
+            }
+          })
+        })
+        this.onRejectedCallbacks.push(() => {
+          queueMicrotask(() => {
+            try {
+              if (typeof onRejected !== 'function') {
+                reject(this.PromiseResult)
+              } else {
+                let x = onRejected(this.PromiseResult)
+                resolvePromise(promise2, x, resolve, reject)
+              }
+            } catch (e) {
+              reject(e)
+            }
+          })
+        })
+      }
+      
+    })
+
+
+
+    // 返回
+    return promise2
   }
 }
 
@@ -129,3 +190,8 @@ p4.then(res => {
 })
 console.log('>>>>>>>2')
 console.log("====================")
+let p5 = new MyPromise((resolve, reject) => {
+  resolve('p5')
+})
+let pp5 = p5.then()
+pp5.then(res => console.log('pp5: ',res))
