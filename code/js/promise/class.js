@@ -20,6 +20,55 @@ const REJECTED = 'rejected';
  * @param {*} reject promise2 !!! 中的 reject
  */
 function resolvePromise(promise, x, resolve, reject) {
+  if (x === promise) {
+    // promise1 回调then返回的是 promise2 自身
+    // 循环引用，引发类型错误
+    throw new TypeError('Chaning cycle detected for promise')
+  }
+  if (x instanceof MyPromise) {
+    // 返回值是个promise
+    x.then(y => {
+      resolvePromise(promise, y, resolve, reject)
+    }, reject)
+  } else if (x !== null && (typeof x === 'object' || typeof x === 'function')) {
+    // x 非空，为对象或者函数， 属于thenable 
+    let then
+    try {
+      then = x.then
+    } catch (e) {
+      return reject(e)
+    }
+    if (typeof then === 'function') {
+      // 调用标识，防止多次调用
+      // 防止多次调用 下面then中的 两个回调函数
+      let called = false
+      try {
+        then.call(
+          x,
+          y => {
+            if (called) return
+            called = true
+            resolvePromise(promise, y, resolve, reject)
+          },
+          r => {
+            if (called) return
+            called = true
+            reject(r)
+          }
+        )
+      } catch (error) {
+        if (called) return
+        called = true
+        reject(error)
+      }
+    } else {
+      // then 不是函数
+      resolve(x)
+    }
+  } else {
+    // x 不是对象或者函数
+    return resolve(x)
+  }
 }
 
 class MyPromise {
@@ -131,7 +180,7 @@ class MyPromise {
           })
         })
       }
-      
+
     })
 
 
@@ -194,4 +243,4 @@ let p5 = new MyPromise((resolve, reject) => {
   resolve('p5')
 })
 let pp5 = p5.then()
-pp5.then(res => console.log('pp5: ',res))
+pp5.then(res => console.log('pp5: ', res))
