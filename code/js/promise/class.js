@@ -188,8 +188,19 @@ class MyPromise {
     // 返回
     return promise2
   }
+
+  // A+ 测试使用
+  static deferred() {
+    let result = {}
+    result.promise = new MyPromise((resolve, reject) => {
+      result.resolve = resolve
+      result.reject = reject
+    })
+    return result
+  }
 }
 
+module.exports = MyPromise
 
 
 // 测试用例
