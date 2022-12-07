@@ -183,10 +183,17 @@ class MyPromise {
 
     })
 
-
-
     // 返回
     return promise2
+  }
+
+  catch(onRejected) {
+    return this.then(undefined, onRejected)
+  }
+
+  finally(callback) {
+    // 无论什么状态也要执行这个回调函数
+    return this.then(callback, callback)
   }
 
   // A+ 测试使用
@@ -197,6 +204,134 @@ class MyPromise {
       result.reject = reject
     })
     return result
+  }
+
+  // 静态方法实现
+  static resolve(value) {
+    if (value instanceof MyPromise) {
+      return value
+    } else if (typeof value === 'object' && 'then' in value) {
+      return new MyPromise((resolve, reject) => {
+        value.then(resolve, reject)
+      })
+    }
+    return new MyPromise((resolve, reject) => {
+      resolve(value)
+    })
+  }
+
+  static reject(reason) {
+    return new MyPromise((resolve, reject) => {
+      reject(reason)
+    })
+  }
+
+  static all(promises) {
+    return new MyPromise((resolve, reject) => {
+      if (Array.isArray(promises)) {
+        let length = promises.length
+        let result = []
+        if (length === 0) {
+          return resolve(promises)
+        }
+        promises.forEach((promise, index) => {
+          // if (promise instanceof MyPromise || (typeof promise === 'object' && 'then' in promise)) {
+          //   MyPromise.resolve(promise).then(
+          //     value => {
+          //       length--
+          //       result[index] = value
+          //       length === 0 && resolve(result)
+          //     },
+          //     reason => {
+          //       reject(reason)
+          //     }
+          //   )
+          // } else {
+          //   length--
+          //   result[index] = promise
+          //   length === 0 && resolve(result)
+          // }
+          MyPromise.resolve(promise).then(
+            value => {
+              length--
+              result[index] = value
+              length === 0 && resolve(result)
+            },
+            reason => {
+              reject(reason)
+            }
+          )
+        })
+      } else {
+        return reject(new TypeError('Arguments is not iterable for Promise.all'))
+      }
+    })
+  }
+
+  static allSettled(promises) {
+    return new MyPromise((resolve, reject) => {
+      if (Array.isArray(promises)) {
+        let result = []
+        let length = promises.length
+        if (length === 0) {
+          return resolve(promises)
+        }
+        promises.forEach((item, index) => {
+          MyPromise.resolve(item).then(
+            value => {
+              length--
+              result[index] = { status: 'fulfilled', value }
+              length === 0 && resolve(result)
+            },
+            reason => {
+              length--
+              result[index] = { status: 'rejected', reason }
+              length === 0 && resolve(result)
+            }
+          )
+        })
+      } else {
+        return reject(new TypeError('Not iterable for Pomise.allSettled'))
+      }
+    })
+  }
+
+  static any(promises) {
+    return new MyPromise((resolve,reject) => {
+      if (Array.isArray(promises)) {
+        let length = promises.length
+        let error = []
+        promises.forEach((item, index) => {
+          MyPromise.resolve(item).then(
+            value => {
+              resolve(value)
+            },
+            reason => {
+              length--
+              error[index] = reason
+              length === 0 && reject(new Error(error))
+            }
+          )
+        })
+      } else {
+        return reject(new TypeError('Argument is not iterable'))
+      }
+    })
+  }
+
+  static race(promises) {
+    return new MyPromise((resolve, reject) => {
+      if (Array.isArray(promises)) {
+        promises.forEach(item => {
+          MyPromise.resolve(item).then(
+            resolve,
+            reject
+          )
+        })
+      } else {
+        return reject(new TypeError('Argument is not iterable'))
+      }
+    })
   }
 }
 
